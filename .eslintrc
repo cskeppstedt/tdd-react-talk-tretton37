@@ -1,3 +1,11 @@
 {
-  "extends": "sagui"
+  "extends": [
+    "eslint-config-standard",
+    "eslint-config-standard-jsx"
+  ],
+  "env": {
+    "jest": true,
+    "node": true
+  },
+  "parser": "babel-eslint"
 }
