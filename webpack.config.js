@@ -33,7 +33,7 @@ module.exports = {
   entry: {
     bundle: './src/index.js'
   },
-  devtool: 'source-map',
+  devtool: 'inline-source-map',
   output: {
     path: outputPath,
     publicPath: '/',
@@ -44,6 +44,13 @@ module.exports = {
     port: 9000
   },
   module: {
+    // preLoaders: [
+    //   {
+    //     test: /\.js$/,
+    //     loader: 'eslint-loader',
+    //     exclude: /node_modules/
+    //   }
+    // ],
     loaders: [
       {
         test: /\.js$/,
@@ -62,5 +69,14 @@ module.exports = {
   plugins: plugins,
   postcss: [
     postCSSModulesValues
-  ]
+  ],
+  // eslint: {
+  //   configFile: path.join(__dirname, '.eslintrc')
+  // },
+  externals: {
+    'cheerio': 'window',
+    'react/addons': true,
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': 'window'
+  }
 }

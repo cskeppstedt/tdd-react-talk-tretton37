@@ -4,8 +4,8 @@
     "eslint-config-standard-jsx"
   ],
   "env": {
-    "jest": true,
-    "node": true
+    "jasmine": true,
+    "browser": true
   },
   "parser": "babel-eslint"
 }
