@@ -5,7 +5,7 @@ const path = require('path')
 const webpack = require('webpack')
 
 const outputPath = path.resolve(__dirname, 'dist')
-const isDevelopment = process.env.NODE_ENV === 'development'
+const isDevelopment = process.env.NODE_ENV !== 'production'
 const localIdentName = isDevelopment ? '[path][local]-[hash:base64:5]' : '[hash:base64:5]'
 const extractCss = new ExtractTextPlugin('[name]-[hash].css')
 
@@ -26,7 +26,10 @@ const plugins = [
 
 if (!isDevelopment) {
   plugins.push(new webpack.optimize.UglifyJsPlugin({
-    compress: { warnings: false }
+    compress: {
+      drop_debugger: false,
+      warnings: false
+    }
   }))
 }
 
@@ -62,6 +65,10 @@ module.exports = {
         ])
       }
     ]
+  },
+  babel: {
+    babelrc: false,
+    presets: ['sagui']
   },
   plugins: plugins,
   postcss: [

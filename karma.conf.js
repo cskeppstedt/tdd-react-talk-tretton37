@@ -1,4 +1,3 @@
-const path = require('path')
 const webpackConfig = require('./webpack.config.js')
 
 module.exports = function (config) {
@@ -6,19 +5,17 @@ module.exports = function (config) {
     port: 9001,
     frameworks: ['jasmine'],
     reporters: ['mocha'],
-    files: [
-      { pattern: './test-bundle.js', watched: false },
-      { pattern: './src/**/*.js', watched: false, included: false }
-    ],
+    files: ['./test-bundle.js'],
+    preprocessors: {
+      './test-bundle.js': ['webpack', 'sourcemap']
+    },
     browsers: ['PhantomJS'],
     phantomjsLauncher: {
       exitOnResourceError: true
     },
-    preprocessors: {
-      './test-bundle.js': ['webpack', 'sourcemap']
-    },
+    captureTimeout: 120000,
+    browserNoActivityTimeout: 1000000,
     webpack: {
-      entry: './test-bundle.js',
       devtool: webpackConfig.devtool,
       module: {
         loaders: webpackConfig.module.loaders
@@ -29,7 +26,10 @@ module.exports = function (config) {
     },
     webpackServer: {
       noInfo: true
-    }
+    },
+    plugins: config.plugins.concat([
+      require('karma-webpack')
+    ])
   })
 }
 
