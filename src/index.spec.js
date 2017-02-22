@@ -1,5 +1,4 @@
-describe('tdd-react-talk', function () {
-  it('should work', function () {
-
-  })
+describe('index', () => {
+  it('should exist')
 })
+

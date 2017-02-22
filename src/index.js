@@ -1,7 +1,25 @@
-import style from './index.css'
+import React from 'react'
+import { render } from 'react-dom'
+import Input from './components/Input'
 
-const div = document.createElement('div')
-div.innerHTML = '<h1>Hello World</h1>'
-div.className = style.component
+import './index.css'
 
-document.getElementById('root').appendChild(div)
+const App = () => {
+  const root = document.getElementById('root')
+  const label = 'Given name'
+  let value = 'Christoffer'
+
+  const onChange = (e) => {
+    value = e.target.value
+    renderApp()
+  }
+
+  const renderApp = () => render(
+    <Input label={label} value={value} onChange={onChange} />,
+    root
+  )
+
+  renderApp()
+}
+
+App()
