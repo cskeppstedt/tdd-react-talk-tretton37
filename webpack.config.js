@@ -37,7 +37,7 @@ module.exports = {
   entry: {
     bundle: './src/index.js'
   },
-  devtool: 'inline-source-map',
+  devtool: isDevelopment ? 'inline-source-map' : 'source-map',
   output: {
     path: outputPath,
     publicPath: '/',
