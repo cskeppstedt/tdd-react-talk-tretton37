@@ -4,7 +4,7 @@ module.exports = function (config) {
   config.set({
     port: 9001,
     frameworks: ['jasmine'],
-    reporters: ['mocha'],
+    reporters: ['clear-screen', 'mocha'],
     files: ['./test-bundle.js'],
     preprocessors: {
       './test-bundle.js': ['webpack', 'sourcemap']
@@ -17,9 +17,7 @@ module.exports = function (config) {
     browserNoActivityTimeout: 1000000,
     webpack: {
       devtool: webpackConfig.devtool,
-      module: {
-        loaders: webpackConfig.module.loaders
-      },
+      module: webpackConfig.module,
       plugins: webpackConfig.plugins,
       postcss: webpackConfig.postcss,
       externals: webpackConfig.externals
@@ -27,9 +25,9 @@ module.exports = function (config) {
     webpackServer: {
       noInfo: true
     },
-    plugins: config.plugins.concat([
-      require('karma-webpack')
-    ])
+    mochaReporter: {
+      divider: ''
+    }
   })
 }
 

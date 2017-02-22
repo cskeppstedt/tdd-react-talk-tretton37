@@ -63,6 +63,10 @@ module.exports = {
           'css?modules&importLoaders=1&localIdentName=' + localIdentName,
           'postcss'
         ])
+      },
+      {
+        test: /\.html$/,
+        loader: 'html-loader'
       }
     ]
   },
