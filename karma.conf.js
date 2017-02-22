@@ -1,25 +1,32 @@
+const path = require('path')
 const webpackConfig = require('./webpack.config.js')
 
 module.exports = function (config) {
-  delete webpackConfig.entry
-  delete webpackConfig.output
-
   config.set({
+    port: 9001,
     frameworks: ['jasmine'],
     reporters: ['mocha'],
     files: [
-      { pattern: 'test-bundle.js', watched: false },
-      { pattern: 'src/**/*', watched: false, included: false }
+      { pattern: './test-bundle.js', watched: false },
+      { pattern: './src/**/*.js', watched: false, included: false }
     ],
     browsers: ['PhantomJS'],
     phantomjsLauncher: {
       exitOnResourceError: true
     },
     preprocessors: {
-      'test-bundle.js': ['webpack', 'sourcemap']
+      './test-bundle.js': ['webpack', 'sourcemap']
     },
-    webpack: webpackConfig,
-    webpackMiddleware: {},
+    webpack: {
+      entry: './test-bundle.js',
+      devtool: webpackConfig.devtool,
+      module: {
+        loaders: webpackConfig.module.loaders
+      },
+      plugins: webpackConfig.plugins,
+      postcss: webpackConfig.postcss,
+      externals: webpackConfig.externals
+    },
     webpackServer: {
       noInfo: true
     }

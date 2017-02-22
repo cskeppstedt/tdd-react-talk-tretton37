@@ -20,7 +20,8 @@ const plugins = [
     'process.env': {
       'NODE_ENV': JSON.stringify(isDevelopment ? 'development' : 'production')
     }
-  })
+  }),
+  new webpack.NoErrorsPlugin()
 ]
 
 if (!isDevelopment) {
@@ -44,18 +45,14 @@ module.exports = {
     port: 9000
   },
   module: {
-    // preLoaders: [
-    //   {
-    //     test: /\.js$/,
-    //     loader: 'eslint-loader',
-    //     exclude: /node_modules/
-    //   }
-    // ],
     loaders: [
       {
         test: /\.js$/,
         exclude: /(node_modules)/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
+        query: {
+          compact: false // enabling it breaks source-maps
+        }
       },
       {
         test: /\.css$/,
@@ -70,9 +67,6 @@ module.exports = {
   postcss: [
     postCSSModulesValues
   ],
-  // eslint: {
-  //   configFile: path.join(__dirname, '.eslintrc')
-  // },
   externals: {
     'cheerio': 'window',
     'react/addons': true,
