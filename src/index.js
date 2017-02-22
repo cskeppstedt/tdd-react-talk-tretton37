@@ -3,3 +3,5 @@
 
 import './index.css'
 
+console.info('hello world')
+
