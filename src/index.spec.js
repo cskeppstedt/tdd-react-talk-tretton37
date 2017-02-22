@@ -1,4 +1,4 @@
 describe('index', () => {
-  it('should exist')
+  it('should exist', () => {})
 })
 
