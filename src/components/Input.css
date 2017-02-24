@@ -1,0 +1,38 @@
+* {
+  box-sizing: border-box;
+}
+
+.root {
+  height: 50px;
+  position: relative;
+}
+
+.input {
+  background: transparent;
+  border: 0px;
+  border-bottom: 1px solid #ccc;
+  color: #3c3c3c;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  height: 50px;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  width: 100%;
+  position: absolute;
+}
+
+.label {
+  color: #3c3c3c;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  height: 50px;
+  line-height: 50px;
+  position: absolute;
+  transition: transform 100ms ease-in-out, font-size 100ms ease-in-out;
+}
+
+.has-value .label {
+  font-size: 11px;
+  transform: translate(0, -15px);
+}
